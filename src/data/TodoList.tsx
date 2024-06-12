@@ -1,10 +1,4 @@
-import { ItemProps } from "../hoc_cpnt";
-
-export const TODOS = [
-    { id: '1', task: 'Do this', completed: true },
-    { id: '2', task: 'Do that', completed: false },
-];
-
+import { IBaseList, ItemProps } from "../types";
 
 export const BaseTodoList: React.FC<{data: ItemProps[]}> = ({
     data
@@ -12,6 +6,18 @@ export const BaseTodoList: React.FC<{data: ItemProps[]}> = ({
     return (
         <ul>
             {data.map((item: any) => (
+                <TodoItem key={item.id} item={item} />
+            ))}
+        </ul>
+    );
+};
+
+export const BaseTodoList2: React.FC<{data: IBaseList}> = ({
+    data
+}) => {
+    return (
+        <ul>
+            {data?.data.map((item: any) => (
                 <TodoItem key={item.id} item={item} />
             ))}
         </ul>

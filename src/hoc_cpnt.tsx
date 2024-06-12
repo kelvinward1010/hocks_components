@@ -1,10 +1,13 @@
-export interface ItemProps {
-    id: string;
-    task: string;
-    completed: boolean;
-}
+import { ItemProps } from "./types";
 
-export const withHigherOrderComponent = (
+
+// ----I ----
+
+export const withHigherOrderComponent = (dataEmptyFeedback: any) => (
     Component: React.ComponentType<{data: ItemProps[]}>
-) => (props: any) => <Component {...props} />;
+) => (props: any) => {
+    if (!props.data) return <div>No data loaded yet.</div>;
+    if(!props?.data?.length) return <div>{dataEmptyFeedback}</div>
+    return <Component {...props} />
+};
   
